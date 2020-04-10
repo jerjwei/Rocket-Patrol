@@ -1,3 +1,4 @@
+// configeration objects
 let config = {
     type: Phaser.CANVAS, 
     width: 640,
@@ -6,3 +7,6 @@ let config = {
 };
 
 let game = new Phaser.Game(config);
+
+// reserve some keyboard variables
+let keyF, keyLEFT, keyRIGHT;
