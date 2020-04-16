@@ -10,7 +10,8 @@ class Play extends Phaser.Scene {
         this.load.image('spaceship', './assets/spaceship.png');
         this.load.image('starfield', './assets/starfield.png');
         this.load.image('SuperSS', './assets/SuperSS.png');
-        this.load.image('Timeship', './assets/Timeship.png');
+        this.load.image('timeship', './assets/Timeship.png');
+        this.load.image('nanthan', './assets/nanthan.png');
         // preload.music
         this.load.audio('background', './assets/background.wav');
         // load spritesheet
@@ -20,6 +21,9 @@ class Play extends Phaser.Scene {
     create() {
         // place tile sprite
         this.starfield = this.add.tileSprite(0, 0, 640, 480, 'starfield').setOrigin(0, 0);
+
+        // add nanthan
+        this.nanthan = new Nanthan(this, game.config.width, 431, 'nanthan').setScale(0.5, 0.5).setOrigin(0, 0);
 
         // white rectangle borders
         this.add.rectangle(5, 5, 630, 32, 0xFFFFFF).setOrigin(0, 0);
@@ -43,7 +47,7 @@ class Play extends Phaser.Scene {
         this.Sship = new SuperSS(this, game.config.width+250, 130, 'SuperSS', 0, 60).setOrigin(0, 0);
 
         // add Timeship
-        this.tship = new Timeship(this, game.config.width+290, 130, 'Timeship', 0, 10).setOrigin(0, 0);
+        this.tship = new Timeship(this, game.config.width+290, 130, 'timeship', 0, 10).setOrigin(0, 0);
 
         // define keyboard keys
         keyF = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
@@ -104,10 +108,6 @@ class Play extends Phaser.Scene {
             this.scene.start("menuScene");
         }
 
-        //if(!this.gameOver){
-        //    this.bgm.play();
-        //}
-
         // scroll starfields
         //this.starfield.tilePositionX -= 4;  // scroll tile sprite
         // how to do diagnal movement?
@@ -139,7 +139,8 @@ class Play extends Phaser.Scene {
             this.shipExplode(this.tship);
         }
 
-        if (!this.gameOver) {               
+        if (!this.gameOver) {          
+            this.nanthan.update();     
             this.p1Rocket.update();         // update rocket sprite
             this.ship01.update();           // update spaceships (x3)
             this.ship02.update();
