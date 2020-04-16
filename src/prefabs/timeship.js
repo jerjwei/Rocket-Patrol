@@ -1,15 +1,15 @@
 //timeship prefab
-class SuperSS extends Phaser.GameObjects.Sprite {
-    constructor(scene, x, y, texture, frame, pointValue) {
+class timeship extends Phaser.GameObjects.Sprite {
+    constructor(scene, x, y, texture, frame, timeValue) {
         super(scene, x, y, texture, frame);
 
         scene.add.existing(this); // add object to existing scene, displayList, updateList
-        this.points = pointValue;
+        this.time = timeValue;
     }
 
     update() {
         // move spaceship left
-        this.x -= 8;//game.settings.supershipSpeed;
+        this.x -= 4;
         // wraparound screen bounds
         if(this.x <= 0 - this.width){
             this.x = game.config.width;
