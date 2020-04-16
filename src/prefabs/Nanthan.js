@@ -7,12 +7,26 @@ class Nanthan extends Phaser.GameObjects.Sprite {
 
     update() {
         // left/right movement
-        if(this.x >= 47 || this.y >= 0){
-            this.x -= 1;
-            this.y -= 1;
-        }else if(this.x <= 578 || this.y <= game.config.width){
-            this.x += 1;
-            this.y += 1;
+        this.x += 1;
+        this.y += 1;
+        if(this.y <= 100) {
+            this.y += 2;
+        }else if(this.x <= 100){
+            this.x += 2;
+        }else if(this.y >= game.config.height - 100){
+            this.y -= Phaser.Math.Between(100, 500);
+        }else if(this.x >= game.config.width - 100){
+            this.x -= Phaser.Math.Between(100, 500);
         }
     }
 }
+
+//if(this.x >= game.config.width-80){
+//    this.x -= 1;
+//}else if(this.y >= game.config.height-80){
+//    this.y -= 1;
+//}else if(this.x <= 80){
+//    this.x += 1;
+//}else if(this.y <= 80){
+//    this.y += 1;
+//}
