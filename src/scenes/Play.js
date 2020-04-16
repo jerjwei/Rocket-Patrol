@@ -10,7 +10,7 @@ class Play extends Phaser.Scene {
         this.load.image('spaceship', './assets/spaceship.png');
         this.load.image('starfield', './assets/starfield.png');
         this.load.image('SuperSS', './assets/SuperSS.png');
-        this.load.image('timeship', './assets/timeship.png');
+        this.load.image('Timeship', './assets/Timeship.png');
         // load spritesheet
         this.load.spritesheet('explosion', './assets/explosion.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 9});
     }
@@ -40,8 +40,8 @@ class Play extends Phaser.Scene {
         // add SuperSpaceShip
         this.Sship = new SuperSS(this, game.config.width+250, 130, 'SuperSS', 0, 60).setOrigin(0, 0);
 
-        // add timeship
-        this.tship = new timeship(this, game.config.width+290, 130, 'timeship', 0, 10).setOrigin(0, 0);
+        // add Timeship
+        this.tship = new Timeship(this, game.config.width+290, 130, 'Timeship', 0, 10).setOrigin(0, 0);
 
         // define keyboard keys
         keyF = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
@@ -122,7 +122,7 @@ class Play extends Phaser.Scene {
             this.shipExplode(this.Sship);
         }
 
-        // check timeship collision here
+        // check Timeship collision here
         if (this.checkCollision(this.p1Rocket, this.tship)) {
             this.p1Rocket.reset();
             this.shipExplode(this.tship);
