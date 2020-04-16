@@ -11,7 +11,7 @@ class Play extends Phaser.Scene {
         this.load.image('starfield', './assets/starfield.png');
         this.load.image('SuperSS', './assets/SuperSS.png');
         this.load.image('timeship', './assets/Timeship.png');
-        this.load.image('nanthan', './assets/nanthan.png');
+        //this.load.image('nanthan', './assets/nanthan.png');
         // preload.music
         this.load.audio('background', './assets/background.wav');
         // load spritesheet
@@ -21,9 +21,6 @@ class Play extends Phaser.Scene {
     create() {
         // place tile sprite
         this.starfield = this.add.tileSprite(0, 0, 640, 480, 'starfield').setOrigin(0, 0);
-
-        // add nanthan
-        this.nanthan = new Nanthan(this, game.config.width/2, 200, 'nanthan').setScale(0.5, 0.5).setOrigin(0, 0);
 
         // white rectangle borders
         this.add.rectangle(5, 5, 630, 32, 0xFFFFFF).setOrigin(0, 0);
@@ -140,7 +137,7 @@ class Play extends Phaser.Scene {
         }
 
         if (!this.gameOver) {          
-            this.nanthan.update();     
+            //this.nanthan.update();     
             this.p1Rocket.update();         // update rocket sprite
             this.ship01.update();           // update spaceships (x3)
             this.ship02.update();
