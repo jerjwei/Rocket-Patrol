@@ -10,7 +10,7 @@ class Play extends Phaser.Scene {
         this.load.image('spaceship', './assets/spaceship.png');
         this.load.image('starfield', './assets/starfield.png');
         this.load.image('SuperSS', './assets/SuperSS.png');
-        this.load.image('timeship', './assets/Timeship.png');
+        this.load.image('timeship', './assets/timeship.png');
         //this.load.image('nanthan', './assets/nanthan.png');
         // preload.music
         this.load.audio('background', './assets/background.wav');
