@@ -1,9 +1,10 @@
 //timeship prefab
 class timeship extends Phaser.GameObjects.Sprite {
-    constructor(scene, x, y, texture, frame, timeValue) {
+    constructor(scene, x, y, texture, frame, pointValue, timeValue) {
         super(scene, x, y, texture, frame);
 
         scene.add.existing(this); // add object to existing scene, displayList, updateList
+        this.pointValue = 0;
         this.time = timeValue;
     }
 

@@ -76,9 +76,12 @@ class Play extends Phaser.Scene {
         // game over flag
         this.gameOver = false;
 
+        // time delay
+        this.addTime = 0;
+         
         // 60-second play clock
         scoreConfig.fixedWidth = 0;
-        this.clock = this.time.delayedCall(game.settings.gameTimer, () => {
+        this.clock = this.time.delayedCall(game.settings.gameTimer + this.addTime, () => {
             this.add.text(game.config.width/2, game.config.height/2, 'GAME OVER', scoreConfig).setOrigin(0.5);
             this.add.text(game.config.width/2, game.config.height/2 + 64, '(F)ire to Restart or ← for Menu', scoreConfig).setOrigin(0.5);
             this.gameOver = true;
@@ -121,7 +124,8 @@ class Play extends Phaser.Scene {
 
         // check timeship collision here
         if (this.checkCollision(this.p1Rocket, this.tship)) {
-            game.settings.gameTimer += 8000;
+            this.addTimeimer += 8000;
+            this.p1Rocket.reset();
             this.shipExplode(this.tship);
         }
 
