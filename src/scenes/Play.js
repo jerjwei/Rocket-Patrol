@@ -124,7 +124,6 @@ class Play extends Phaser.Scene {
 
         // check timeship collision here
         if (this.checkCollision(this.p1Rocket, this.tship)) {
-            this.addTimeimer += 8000;
             this.p1Rocket.reset();
             this.shipExplode(this.tship);
         }

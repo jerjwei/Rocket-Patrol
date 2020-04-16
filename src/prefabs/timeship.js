@@ -4,7 +4,7 @@ class timeship extends Phaser.GameObjects.Sprite {
         super(scene, x, y, texture, frame);
 
         scene.add.existing(this); // add object to existing scene, displayList, updateList
-        this.pointValue = 0;
+        this.points = 0;
         this.time = timeValue;
     }
 
