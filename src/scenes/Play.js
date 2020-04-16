@@ -77,13 +77,11 @@ class Play extends Phaser.Scene {
 
         // background music
         this.bgm = this.sound.add('background', {config});
-        if(!this.gameOver){
-            this.bgm.play();
+        this.bgm.play();
+    
 
         // game over flag
         this.gameOver = false;
-        
-        }
          
         // 60-second play clock
         scoreConfig.fixedWidth = 0;
