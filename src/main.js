@@ -13,7 +13,7 @@ let game = new Phaser.Game(config);
 game.settings = {
     spaceshipSpeed: 3,
     supershipSpeed: 6,
-    gameTimer: 60000    
+    gameTimer: 300,    
 }
 
 // reserve keyboard vars

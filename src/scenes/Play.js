@@ -11,6 +11,8 @@ class Play extends Phaser.Scene {
         this.load.image('starfield', './assets/starfield.png');
         this.load.image('SuperSS', './assets/SuperSS.png');
         this.load.image('Timeship', './assets/Timeship.png');
+        // preload.music
+        this.load.audio('background', './assets/background.wav');
         // load spritesheet
         this.load.spritesheet('explosion', './assets/explosion.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 9});
     }
@@ -31,7 +33,7 @@ class Play extends Phaser.Scene {
         // add rocket (p1)
         // constructor(scene, x, y, texture, frame);
         this.p1Rocket = new Rocket(this, game.config.width/2, 431, 'rocket').setScale(0.5, 0.5).setOrigin(0, 0);
-        
+    
         // add spaceship (x3)
         this.ship01 = new Spaceship(this, game.config.width+142, 132, 'spaceship', 0, 30).setOrigin(0, 0);
         this.ship02 = new Spaceship(this, game.config.width+300, 180, 'spaceship', 0, 20).setOrigin(0, 0);
@@ -73,20 +75,27 @@ class Play extends Phaser.Scene {
         }
         this.scoreLeft = this.add.text(69, 54, this.p1Score, scoreConfig);
 
+        // background music
+        this.bgm = this.sound.add('background', {config});
+        if(!this.gameOver){
+            this.bgm.play();
+
         // game over flag
         this.gameOver = false;
-
-        // time delay
-        this.addTime = 0;
+        
+        }
          
         // 60-second play clock
         scoreConfig.fixedWidth = 0;
-        this.clock = this.time.delayedCall(game.settings.gameTimer + this.addTime, () => {
+        this.clock = this.time.delayedCall(game.settings.gameTimer, () => {
             this.add.text(game.config.width/2, game.config.height/2, 'GAME OVER', scoreConfig).setOrigin(0.5);
             this.add.text(game.config.width/2, game.config.height/2 + 64, '(F)ire to Restart or ← for Menu', scoreConfig).setOrigin(0.5);
             this.gameOver = true;
+            this.bgm.stop();
         }, null, this);
     }
+
+    
 
     update() {
         // check key input for restart
@@ -96,6 +105,10 @@ class Play extends Phaser.Scene {
         if (this.gameOver && Phaser.Input.Keyboard.JustDown(keyLEFT)) {
             this.scene.start("menuScene");
         }
+
+        //if(!this.gameOver){
+        //    this.bgm.play();
+        //}
 
         // scroll starfields
         //this.starfield.tilePositionX -= 4;  // scroll tile sprite
