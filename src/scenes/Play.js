@@ -80,18 +80,18 @@ class Play extends Phaser.Scene {
         this.bgm = this.sound.add('background', {config});
         this.bgm.play();
     
-
         // game over flag
         this.gameOver = false;
+        
+        this.timer = game.settings.gameTimer;
          
         // 60-second play clock
-        scoreConfig.fixedWidth = 0;
-        this.clock = this.time.delayedCall(game.settings.gameTimer, () => {
-            this.add.text(game.config.width/2, game.config.height/2, 'GAME OVER', scoreConfig).setOrigin(0.5);
-            this.add.text(game.config.width/2, game.config.height/2 + 64, '(F)ire to Restart or ← for Menu', scoreConfig).setOrigin(0.5);
-            this.gameOver = true;
-            this.bgm.stop();
-        }, null, this);
+        //this.clock = this.time.delayedCall(game.settings.gameTimer, () => {
+        //    this.add.text(game.config.width/2, game.config.height/2, 'GAME OVER', scoreConfig).setOrigin(0.5);
+        //    this.add.text(game.config.width/2, game.config.height/2 + 64, '(F)ire to Restart or ← for Menu', scoreConfig).setOrigin(0.5);
+        //    this.gameOver = true;
+        //    this.bgm.stop();
+        //}, null, this);
     }
 
     
@@ -103,6 +103,14 @@ class Play extends Phaser.Scene {
         }
         if (this.gameOver && Phaser.Input.Keyboard.JustDown(keyLEFT)) {
             this.scene.start("menuScene");
+        }
+
+        this.timer -= 16.91;
+        if(this.timer <= 0) {
+            this.add.text(game.config.width/2, game.config.height/2, 'GAME OVER', this.p1Score).setOrigin(0.5);
+            this.add.text(game.config.width/2, game.config.height/2 + 64, '(F)ire to Restart or ← for Menu', this.p1Score).setOrigin(0.5);
+            this.gameOver = true;
+            this.bgm.stop();
         }
 
         // scroll starfields
@@ -133,6 +141,7 @@ class Play extends Phaser.Scene {
         // check Timeship collision here
         if (this.checkCollision(this.p1Rocket, this.tship)) {
             this.p1Rocket.reset();
+            this.timer += game.settings.addTime;              // add seconds when hit
             this.shipExplode(this.tship);
         }
 
